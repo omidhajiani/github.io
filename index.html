@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه من</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+    <!-- This is where your app's content will go, like product lists -->
+    <div class="main-content">
+        <h1>به فروشگاه من خوش آمدید</h1>
+        <p>محتوای صفحه اصلی در اینجا قرار می‌گیرد.</p>
+    </div>
+
+    <!-- This is the bottom navigation bar -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item">
+            <span>فروشگاه</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span>سفارش‌ها</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span>چت و تماس</span>
+        </a>
+        <a href="#" class="nav-item active">
+            <span>پروفایل</span>
+        </a>
+    </nav>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered! Scope is:', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('Service Worker registration failed:', err);
+                    });
+            });
+        }
+    </script>
+
+</body>
+</html>

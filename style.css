@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    padding-bottom: 60px; /* Add padding to the bottom to avoid content being hidden by the nav bar */
+}
+
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    text-decoration: none;
+    flex-grow: 1; /* Makes sure all items take up equal space */
+}
+
+.nav-item.active {
+    color: #007bff; /* A blue color for the active button */
+}
+
+.nav-item span {
+    font-size: 14px;
+}
