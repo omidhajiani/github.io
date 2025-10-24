@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>فروشگاه من</title>
+
+    <!-- Link to your CSS file for styling -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Link to the Web App Manifest -->
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
-    <!-- This is where your app's content will go, like product lists -->
+    <!-- This is where your app's main content will go -->
     <div class="main-content">
         <h1>به فروشگاه من خوش آمدید</h1>
         <p>محتوای صفحه اصلی در اینجا قرار می‌گیرد.</p>
@@ -27,10 +31,12 @@
             <span>چت و تماس</span>
         </a>
         <a href="#" class="nav-item active">
+            <!-- 'active' class highlights this button -->
             <span>پروفایل</span>
         </a>
     </nav>
 
+    <!-- This script registers the service worker for PWA functionality -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
