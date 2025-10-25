@@ -1,5 +1,5 @@
 // This version MUST match the 'appVersion' constant in index.html
-const CACHE_NAME = 'my-pwa-shop-v1.4';
+const CACHE_NAME = 'my-pwa-shop-v1.5';
 
 const urlsToCache = [
   '/',
