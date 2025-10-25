@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-pwa-shop-v1.1'; // Give our cache a versioned name
+const CACHE_NAME = 'my-pwa-shop-v1.2'; // Give our cache a versioned name
 const urlsToCache = [
   '/',
   'index.html',
