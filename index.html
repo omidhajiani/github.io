@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>فروشگاه من</title>
     
-    <!-- Link to your CSS file with versioning -->
     <link rel="stylesheet" href="style.css?v=1.1">
-    
-    <!-- Link to the Web App Manifest with versioning -->
     <link rel="manifest" href="manifest.json?v=1.1">
-    
-    <!-- Link to Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
+
+    <!-- Version display in the top right corner -->
+    <div class="version-display">v1.1</div>
 
     <main>
         <!-- Page 1: فروشگاه -->
@@ -72,7 +70,7 @@
         </a>
     </nav>
 
-    <!-- JavaScript to make buttons work -->
+    <!-- THE COMPLETE JAVASCRIPT BLOCK -->
     <script>
         // Register the service worker with versioning
         if ('serviceWorker' in navigator) {
@@ -83,7 +81,7 @@
             });
         }
 
-        // Handle navigation clicks
+        // Handle navigation clicks (THIS PART WAS MISSING)
         const navItems = document.querySelectorAll('.nav-item');
         const contentSections = document.querySelectorAll('.content-section');
 
@@ -91,8 +89,12 @@
             item.addEventListener('click', (e) => {
                 e.preventDefault(); 
                 const targetPage = item.getAttribute('data-page');
+
+                // Update active button
                 navItems.forEach(nav => nav.classList.remove('active'));
                 item.classList.add('active');
+
+                // Show the correct content section
                 contentSections.forEach(section => {
                     section.classList.toggle('active', section.id === targetPage);
                 });

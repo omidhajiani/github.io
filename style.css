@@ -101,3 +101,17 @@ body {
     .login-button:hover {
         background-color: #0056b3;
     }
+
+/* NEW: Styles for the version display */
+.version-display {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+    padding: 3px 6px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 10px;
+    border-radius: 4px;
+    z-index: 1000; /* Ensures it stays on top of other content */
+    font-family: monospace;
+}
