@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>فروشگاه من</title>
-
-    <!-- Link to your CSS file for styling -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Link to the Web App Manifest -->
-    <link rel="manifest" href="manifest.json">
-
+    
+    <!-- Link to your CSS file with versioning -->
+    <link rel="stylesheet" href="style.css?v=1.1">
+    
+    <!-- Link to the Web App Manifest with versioning -->
+    <link rel="manifest" href="manifest.json?v=1.1">
+    
     <!-- Link to Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -74,10 +74,10 @@
 
     <!-- JavaScript to make buttons work -->
     <script>
-        // Register the service worker
+        // Register the service worker with versioning
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
+                navigator.serviceWorker.register('./sw.js?v=1.1')
                     .then(reg => console.log('Service Worker: Registered'))
                     .catch(err => console.log(`Service Worker: Error: ${err}`));
             });
@@ -89,21 +89,12 @@
 
         navItems.forEach(item => {
             item.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent page from reloading
-
+                e.preventDefault(); 
                 const targetPage = item.getAttribute('data-page');
-
-                // Update active button
                 navItems.forEach(nav => nav.classList.remove('active'));
                 item.classList.add('active');
-
-                // Show the correct content section
                 contentSections.forEach(section => {
-                    if (section.id === targetPage) {
-                        section.classList.add('active');
-                    } else {
-                        section.classList.remove('active');
-                    }
+                    section.classList.toggle('active', section.id === targetPage);
                 });
             });
         });
