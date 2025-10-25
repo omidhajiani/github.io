@@ -1,10 +1,12 @@
-const CACHE_NAME = 'my-pwa-shop-v1.2'; // Give our cache a versioned name
+// This version MUST match the 'appVersion' constant in index.html
+const CACHE_NAME = 'my-pwa-shop-v1.3';
+
 const urlsToCache = [
   '/',
   'index.html',
   'style.css',
   'manifest.json'
-  // Note: We don't cache the sw.js file itself.
+  // Note: We don't cache the sw.js file itself or external files like Font Awesome.
 ];
 
 // Install event: fires when the service worker is first installed.
@@ -23,10 +25,10 @@ self.addEventListener('install', event => {
   );
 });
 
-// Activate event: fires when the service worker becomes active.
+// Activate event: fires when the new service worker becomes active.
 self.addEventListener('activate', event => {
   console.log('Service Worker: Activating...');
-  // Remove old, outdated caches
+  // This function finds and removes old, outdated caches.
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
@@ -44,9 +46,10 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch event: fires for every network request.
+// Fetch event: fires for every network request from the app.
 self.addEventListener('fetch', event => {
-  // We'll add fetching logic here in the future for offline mode.
-  // For now, it will just use the network.
+  // For now, we are just fetching from the network.
+  // In a future step, you could add logic here to serve cached files
+  // when the user is offline.
   event.respondWith(fetch(event.request));
 });
