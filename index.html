@@ -24,8 +24,8 @@
                 <h1>ورود به حساب کاربری</h1>
                 <form class="login-form" id="login-form">
                     <div class="form-group">
-                        <label for="mobile">ایمیل</label>
-                        <input type="email" id="mobile" placeholder="ایمیل خود را وارد کنید">
+                        <label for="mobile">شماره موبایل</label>
+                        <input type="tel" id="mobile" placeholder="مثال: 09123456789">
                     </div>
                     <div class="form-group">
                         <label for="password">رمز عبور</label>
@@ -42,14 +42,14 @@
                 <button id="logout-button" class="login-button">خروج از حساب</button>
             </div>
 
-            <!-- Admin Panel (Hidden by default) -->
+            <!-- Admin Panel -->
             <div id="admin-panel" style="display: none; margin-top: 30px; border-top: 2px solid #007bff; padding-top: 20px;">
                 <h2>پنل مدیریت</h2>
                 <form class="login-form" id="create-user-form">
                     <h3>ایجاد کاربر جدید</h3>
                     <div class="form-group">
-                        <label for="new-email">ایمیل کاربر جدید</label>
-                        <input type="email" id="new-email" placeholder="مثال: 09123456789@myapp.com" required>
+                        <label for="new-mobile">شماره موبایل کاربر جدید</label>
+                        <input type="tel" id="new-mobile" placeholder="مثال: 09351234567" required>
                     </div>
                     <div class="form-group">
                         <label for="new-password">رمز عبور کاربر جدید</label>
@@ -73,10 +73,11 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
-    <!-- ONE SCRIPT BLOCK TO RULE THEM ALL -->
+    <!-- The One, Complete App Script -->
     <script>
-        const appVersion = '1.7';
-        
+        const appVersion = '1.8';
+        const fakeDomain = '@myapp.com'; // Our secret domain
+
         // ** PASTE YOUR FIREBASE CONFIG KEYS HERE **
         const firebaseConfig = {
           apiKey: "AIzaSyDC_sR04GqMolGCZuBqmshwMn3aP_1qxM8",
@@ -121,7 +122,7 @@
             });
         });
 
-        // Get references to all our interactive elements
+        // Get references to all interactive elements
         const loginForm = document.getElementById('login-form');
         const loginView = document.getElementById('login-view');
         const userView = document.getElementById('user-view');
@@ -132,59 +133,52 @@
         
         // --- Event Listeners ---
 
-        // Listen for the login form submission
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const email = loginForm.mobile.value;
+            const phoneNumber = loginForm.mobile.value;
             const password = loginForm.password.value;
+            // Convert phone number to an email for Firebase
+            const email = phoneNumber.includes('@') ? phoneNumber : phoneNumber + fakeDomain;
+            
             auth.signInWithEmailAndPassword(email, password)
                 .then(userCredential => console.log('User logged in:', userCredential.user))
                 .catch(error => alert(`خطا در ورود: ${error.message}`));
         });
 
-        // Listen for logout button click
         logoutButton.addEventListener('click', () => {
             auth.signOut().then(() => console.log('User signed out'));
         });
 
-        // Listen for the create user form submission
         createUserForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const email = createUserForm['new-email'].value;
-            alert(`آماده برای ایجاد کاربر: ${email}. قابلیت اصلی در مرحله بعد اضافه خواهد شد.`);
+            const phoneNumber = createUserForm['new-mobile'].value;
+            alert(`آماده برای ایجاد کاربر با شماره: ${phoneNumber}. قابلیت اصلی در مرحله بعد اضافه خواهد شد.`);
             createUserForm.reset();
         });
 
         // --- Main App Logic ---
 
-        // Check user's login state and role on page load and whenever it changes
         auth.onAuthStateChanged(user => {
-            // Start by hiding all conditional views
             userView.style.display = 'none';
             adminPanel.style.display = 'none';
-            loginView.style.display = 'block'; // Show login form by default
+            loginView.style.display = 'block';
 
             if (user) {
-                // If a user is logged in, show their view
                 loginView.style.display = 'none';
                 userView.style.display = 'block';
-                userEmailDisplay.textContent = `خوش آمدید، ${user.email}`;
+                // Display the phone number by removing our fake domain
+                userEmailDisplay.textContent = `خوش آمدید، ${user.email.replace(fakeDomain, '')}`;
 
-                // Now, check if this logged-in user is an admin
                 const userDocRef = db.collection('users').doc(user.uid);
                 userDocRef.get().then((doc) => {
                     if (doc.exists && doc.data().role === 'admin') {
-                        // This user IS an admin! Show the admin panel.
                         console.log("Admin user detected!");
                         adminPanel.style.display = 'block';
                     } else {
-                        // This is a regular user.
                         console.log("Regular user detected.");
                     }
                 }).catch((error) => console.error("Error getting user role:", error));
-
             } else {
-                // No user is signed in. The default state is already correct.
                 console.log("No user is signed in.");
             }
         });
