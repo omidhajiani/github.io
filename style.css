@@ -161,3 +161,136 @@ body {
     border-bottom: 2px solid #007bff;
     padding-bottom: 10px;
 }
+
+/* --- Shop Page Styles (Ensures Two Columns) --- */
+.category-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+.category-card {
+    width: 45%;
+    background-color: #ffffff;
+    padding: 20px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.category-card:hover {
+    transform: translateY(-3px);
+}
+.back-button {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+#product-list-title {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+/* --- NEW: Orders Page Tab Styles --- */
+.tabs-container {
+    width: 100%;
+    margin-top: 20px;
+}
+.tab-buttons {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+.tab-button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: #888;
+    border-bottom: 3px solid transparent;
+}
+.tab-button.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+    font-weight: bold;
+}
+.tab-content {
+    display: none;
+    padding: 20px 5px;
+}
+.tab-content.active {
+    display: block;
+}
+
+/* --- NEW: Chat & Contact Page Styles --- */
+.chat-container {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 300px; /* Example height */
+}
+.chat-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+.message {
+    padding: 8px 12px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+.message.received {
+    background-color: #e9e9eb;
+    align-self: flex-start;
+}
+.chat-input-area {
+    display: flex;
+    border-top: 1px solid #ccc;
+    padding: 5px;
+}
+.chat-input-area input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+}
+.chat-input-area button {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    padding: 0 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.contact-info {
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+.contact-info p {
+    margin: 0 0 10px 0;
+}
+.contact-info a {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}

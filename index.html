@@ -14,44 +14,70 @@
     <div class="version-display"></div>
 
     <main>
-        <!-- ======================= CHANGE STARTS HERE ======================= -->
-        <section id="shop" class="content-section">
-            
-            <!-- View 1: Category Grid (Visible by default) -->
+        <!-- The "shop" section is now active by default -->
+        <section id="shop" class="content-section active">
             <div id="category-grid-view">
                 <h1>دسته‌بندی محصولات</h1>
                 <div class="category-grid">
-                    <a href="#" class="category-card" data-category="پاسارگاد سیکلت فارس (آشیل)">پاسارگاد سیکلت فارس (آشیل)</a>
-                    <a href="#" class="category-card" data-category="سهند سیکلت (هرم اسپید)">سهند سیکلت (هرم اسپید)</a>
-                    <a href="#" class="category-card" data-category="ایران دوچرخ">ایران دوچرخ</a>
-                    <a href="#" class="category-card" data-category="سپاهان سیکلت">سپاهان سیکلت</a>
-                    <a href="#" class="category-card" data-category="کلیک و های کلیک">کلیک و های کلیک</a>
-                    <a href="#" class="category-card" data-category="قطعات ویو و طرح ویو">قطعات ویو و طرح ویو</a>
-                    <a href="#" class="category-card" data-category="آیروکس و NVX۱۵۵">آیروکس و NVX۱۵۵</a>
-                    <a href="#" class="category-card" data-category="طرح ADV">طرح ADV</a>
-                    <a href="#" class="category-card" data-category="باکسر ۱۵۰">باکسر ۱۵۰</a>
-                    <a href="#" class="category-card" data-category="کلاه و تجهیزات ایمنی">کلاه و تجهیزات ایمنی</a>
+                    <a href="#products" class="category-card" data-category="پاسارگاد سیکلت فارس (آشیل)">پاسارگاد سیکلت فارس (آشیل)</a>
+                    <a href="#products" class="category-card" data-category="سهند سیکلت (هرم اسپید)">سهند سیکلت (هرم اسپید)</a>
+                    <a href="#products" class="category-card" data-category="ایران دوچرخ">ایران دوچرخ</a>
+                    <a href="#products" class="category-card" data-category="سپاهان سیکلت">سپاهان سیکلت</a>
+                    <a href="#products" class="category-card" data-category="کلیک و های کلیک">کلیک و های کلیک</a>
+                    <a href="#products" class="category-card" data-category="قطعات ویو و طرح ویو">قطعات ویو و طرح ویو</a>
+                    <a href="#products" class="category-card" data-category="آیروکس و NVX۱۵۵">آیروکس و NVX۱۵۵</a>
+                    <a href="#products" class="category-card" data-category="طرح ADV">طرح ADV</a>
+                    <a href="#products" class="category-card" data-category="باکسر ۱۵۰">باکسر ۱۵۰</a>
+                    <a href="#products" class="category-card" data-category="کلاه و تجهیزات ایمنی">کلاه و تجهیزات ایمنی</a>
                 </div>
             </div>
-
-            <!-- View 2: Product List (Hidden by default) -->
             <div id="product-list-view" style="display: none;">
                 <button id="back-to-categories" class="back-button">&larr; بازگشت به دسته‌بندی‌ها</button>
                 <h2 id="product-list-title"></h2>
                 <div class="product-list">
-                    <!-- Products will be loaded here later -->
                     <p>محصولات این دسته در اینجا نمایش داده خواهند شد.</p>
                 </div>
             </div>
-
         </section>
-        <!-- ======================= CHANGE ENDS HERE ======================= -->
 
-        <section id="orders" class="content-section"><h1>سفارش‌ها</h1><p>لیست سفارش‌های شما در اینجا خواهد بود.</p></section>
-        <section id="chat" class="content-section"><h1>چت و تماس</h1><p>اطلاعات تماس و چت با پشتیبانی.</p></section>
+        <!-- NEW: "Orders" section with tabs -->
+        <section id="orders" class="content-section">
+            <h1>سفارش‌ها</h1>
+            <div class="tabs-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="open-orders">سفارش های باز</button>
+                    <button class="tab-button" data-tab="past-orders">سفارش های گذشته</button>
+                </div>
+                <div id="open-orders" class="tab-content active">
+                    <p>لیست سفارش‌های باز شما در اینجا نمایش داده خواهد شد.</p>
+                </div>
+                <div id="past-orders" class="tab-content">
+                    <p>لیست سفارش‌های تکمیل شده شما در اینجا خواهد بود.</p>
+                </div>
+            </div>
+        </section>
 
-        <section id="profile" class="content-section active">
-            <!-- Login View -->
+        <!-- NEW: "Chat & Contact" section with chat UI and phone link -->
+        <section id="chat" class="content-section">
+            <h1>چت و تماس</h1>
+            <div class="chat-container">
+                <div class="chat-messages">
+                    <div class="message received">سلام! چطور میتونم کمکتون کنم؟</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" placeholder="پیام خود را بنویسید...">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+            <div class="contact-info">
+                <p>برای تماس مستقیم، روی شماره زیر کلیک کنید:</p>
+                <a href="tel:+989123456789">۰۹۱۲-۳۴۵-۶۷۸۹</a>
+            </div>
+        </section>
+
+        <!-- The "profile" section is no longer active by default -->
+        <section id="profile" class="content-section">
+            <!-- All profile content is preserved exactly as you had it -->
             <div id="login-view">
                 <h1>ورود به حساب کاربری</h1>
                 <form class="login-form" id="login-form">
@@ -66,15 +92,11 @@
                     <button type="submit" class="login-button">ورود</button>
                 </form>
             </div>
-
-            <!-- Logged-in User View -->
             <div id="user-view" style="display: none;">
                 <h1>پروفایل شما</h1>
                 <p id="user-email"></p>
                 <button id="logout-button" class="login-button">خروج از حساب</button>
             </div>
-
-            <!-- Admin Panel -->
             <div id="admin-panel" style="display: none; margin-top: 30px; border-top: 2px solid #007bff; padding-top: 20px;">
                 <h2>پنل مدیریت</h2>
                 <form class="login-form" id="create-user-form">
@@ -94,10 +116,12 @@
     </main>
 
     <nav class="bottom-nav">
-        <a href="#shop" class="nav-item" data-page="shop"><i class="fas fa-store"></i><span>فروشگاه</span></a>
+        <!-- The "shop" button is now active by default -->
+        <a href="#shop" class="nav-item active" data-page="shop"><i class="fas fa-store"></i><span>فروشگاه</span></a>
         <a href="#orders" class="nav-item" data-page="orders"><i class="fas fa-receipt"></i><span>سفارش‌ها</span></a>
         <a href="#chat" class="nav-item" data-page="chat"><i class="fas fa-comments"></i><span>چت و تماس</span></a>
-        <a href="#profile" class="nav-item active" data-page="profile"><i class="fas fa-user"></i><span>پروفایل</span></a>
+        <!-- The "profile" button is no longer active -->
+        <a href="#profile" class="nav-item" data-page="profile"><i class="fas fa-user"></i><span>پروفایل</span></a>
     </nav>
 
     <!-- Firebase SDK Scripts -->
@@ -107,10 +131,10 @@
 
     <!-- The One, Complete App Script -->
     <script>
-        const appVersion = '1.9'; // Updated version
-        const fakeDomain = '@myapp.com'; // Our secret domain
+        const appVersion = '2.0'; // Major update!
+        const fakeDomain = '@myapp.com';
 
-        // Your Firebase config keys (preserved from your file)
+        // Your Firebase config, preserved from your file
         const firebaseConfig = {
           apiKey: "AIzaSyDC_sR04GqMolGCZuBqmshwMn3aP_1qxM8",
           authDomain: "my-pwa-shop-8e911.firebaseapp.com",
@@ -120,71 +144,119 @@
           appId: "1:192952139085:web:cd301112a862ab04d44b04"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // Dynamic versioning and Service Worker registration
+        // --- SECTION 1: INITIALIZATION & VERSIONING ---
         (function() {
             document.querySelector('.version-display').textContent = `v${appVersion}`;
             document.getElementById('css-link').href = `style.css?v=${appVersion}`;
             document.getElementById('manifest-link').href = `manifest.json?v=${appVersion}`;
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register(`./sw.js?v=${appVersion}`)
-                        .then(reg => console.log('Service Worker: Registered'))
-                        .catch(err => console.log(`Service Worker: Error: ${err}`));
+                    navigator.serviceWorker.register(`./sw.js?v=${appVersion}`).then(reg => console.log('SW Registered')).catch(err => console.log('SW Error'));
                 });
             }
         })();
 
-        // Navigation logic
-        const navItems = document.querySelectorAll('.nav-item');
+        // --- SECTION 2: GET ELEMENT REFERENCES ---
         const contentSections = document.querySelectorAll('.content-section');
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetPage = item.getAttribute('data-page');
-                navItems.forEach(nav => nav.classList.remove('active'));
-                item.classList.add('active');
-                contentSections.forEach(section => {
-                    section.classList.toggle('active', section.id === targetPage);
-                });
-            });
-        });
-
-        // Get references to all interactive elements
+        const navItems = document.querySelectorAll('.nav-item');
         const loginForm = document.getElementById('login-form');
-        const loginView = document.getElementById('login-view');
         const userView = document.getElementById('user-view');
-        const userEmailDisplay = document.getElementById('user-email');
-        const logoutButton = document.getElementById('logout-button');
         const adminPanel = document.getElementById('admin-panel');
-        const createUserForm = document.getElementById('create-user-form');
-        
-        // NEW: Get references for the shop page
         const categoryGridView = document.getElementById('category-grid-view');
         const productListView = document.getElementById('product-list-view');
         const productListTitle = document.getElementById('product-list-title');
         const backToCategoriesButton = document.getElementById('back-to-categories');
         const categoryCards = document.querySelectorAll('.category-card');
-        
-        // --- Event Listeners ---
+        const tabButtons = document.querySelectorAll('.tab-button');
 
+        // --- SECTION 3: CORE NAVIGATION LOGIC ---
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetPage = item.getAttribute('data-page');
+
+                history.pushState({ page: targetPage }, '', `#${targetPage}`);
+                
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+
+                contentSections.forEach(section => {
+                    section.classList.toggle('active', section.id === targetPage);
+                });
+            });
+        });
+        
+        // History management for Shop page back button
+        function showCategories() {
+            productListView.style.display = 'none';
+            categoryGridView.style.display = 'block';
+        }
+
+        function showProducts(categoryName) {
+            productListTitle.textContent = categoryName;
+            categoryGridView.style.display = 'none';
+            productListView.style.display = 'block';
+        }
+
+        categoryCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                const categoryName = card.dataset.category;
+                history.pushState({ page: 'products', category: categoryName }, categoryName, '#products');
+                showProducts(categoryName);
+            });
+        });
+        
+        backToCategoriesButton.addEventListener('click', () => {
+            history.back();
+        });
+
+        window.addEventListener('popstate', (event) => {
+            if (event.state) {
+                if (event.state.page === 'products') {
+                    showProducts(event.state.category);
+                } else {
+                    // This handles back button for main pages
+                    document.querySelector(`.nav-item[data-page="${event.state.page}"]`)?.click();
+                    showCategories(); // Ensure shop is reset to category view
+                }
+            } else {
+                // Fallback for initial state
+                document.querySelector('.nav-item[data-page="shop"]')?.click();
+                showCategories();
+            }
+        });
+
+        // --- SECTION 4: OTHER EVENT LISTENERS ---
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.dataset.tab;
+                button.parentElement.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                button.closest('.tabs-container').querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        const logoutButton = document.getElementById('logout-button');
+        const createUserForm = document.getElementById('create-user-form');
+        
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const phoneNumber = loginForm.mobile.value;
             const password = loginForm.password.value;
             const email = phoneNumber.includes('@') ? phoneNumber : phoneNumber + fakeDomain;
-            
-            auth.signInWithEmailAndPassword(email, password)
-                .then(userCredential => console.log('User logged in:', userCredential.user))
-                .catch(error => alert(`خطا در ورود: ${error.message}`));
+            auth.signInWithEmailAndPassword(email, password).catch(error => alert(`خطا در ورود: ${error.message}`));
         });
 
         logoutButton.addEventListener('click', () => {
-            auth.signOut().then(() => console.log('User signed out'));
+            auth.signOut();
         });
 
         createUserForm.addEventListener('submit', (e) => {
@@ -193,35 +265,12 @@
             alert(`آماده برای ایجاد کاربر با شماره: ${phoneNumber}. قابلیت اصلی در مرحله بعد اضافه خواهد شد.`);
             createUserForm.reset();
         });
-
-        // NEW: Add click listeners for each category card
-        categoryCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                e.preventDefault();
-                const categoryName = card.dataset.category;
-                
-                // Update the title of the product page
-                productListTitle.textContent = categoryName;
-
-                // Switch views
-                categoryGridView.style.display = 'none';
-                productListView.style.display = 'block';
-
-                // In the future, we will fetch products for 'categoryName' here
-                console.log(`Loading products for: ${categoryName}`);
-            });
-        });
-
-        // NEW: Add click listener for the back button
-        backToCategoriesButton.addEventListener('click', () => {
-            // Switch views back
-            productListView.style.display = 'none';
-            categoryGridView.style.display = 'block';
-        });
-
-        // --- Main App Logic ---
-
+        
+        // --- SECTION 5: FIREBASE AUTH LOGIC ---
         auth.onAuthStateChanged(user => {
+            const userEmailDisplay = document.getElementById('user-email');
+            const loginView = document.getElementById('login-view');
+            
             userView.style.display = 'none';
             adminPanel.style.display = 'none';
             loginView.style.display = 'block';
@@ -234,14 +283,9 @@
                 const userDocRef = db.collection('users').doc(user.uid);
                 userDocRef.get().then((doc) => {
                     if (doc.exists && doc.data().role === 'admin') {
-                        console.log("Admin user detected!");
                         adminPanel.style.display = 'block';
-                    } else {
-                        console.log("Regular user detected.");
                     }
-                }).catch((error) => console.error("Error getting user role:", error));
-            } else {
-                console.log("No user is signed in.");
+                });
             }
         });
     </script>
