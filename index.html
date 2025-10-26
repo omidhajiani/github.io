@@ -14,7 +14,39 @@
     <div class="version-display"></div>
 
     <main>
-        <section id="shop" class="content-section"><h1>فروشگاه</h1><p>لیست محصولات در اینجا نمایش داده می‌شود.</p></section>
+        <!-- ======================= CHANGE STARTS HERE ======================= -->
+        <section id="shop" class="content-section">
+            
+            <!-- View 1: Category Grid (Visible by default) -->
+            <div id="category-grid-view">
+                <h1>دسته‌بندی محصولات</h1>
+                <div class="category-grid">
+                    <a href="#" class="category-card" data-category="پاسارگاد سیکلت فارس (آشیل)">پاسارگاد سیکلت فارس (آشیل)</a>
+                    <a href="#" class="category-card" data-category="سهند سیکلت (هرم اسپید)">سهند سیکلت (هرم اسپید)</a>
+                    <a href="#" class="category-card" data-category="ایران دوچرخ">ایران دوچرخ</a>
+                    <a href="#" class="category-card" data-category="سپاهان سیکلت">سپاهان سیکلت</a>
+                    <a href="#" class="category-card" data-category="کلیک و های کلیک">کلیک و های کلیک</a>
+                    <a href="#" class="category-card" data-category="قطعات ویو و طرح ویو">قطعات ویو و طرح ویو</a>
+                    <a href="#" class="category-card" data-category="آیروکس و NVX۱۵۵">آیروکس و NVX۱۵۵</a>
+                    <a href="#" class="category-card" data-category="طرح ADV">طرح ADV</a>
+                    <a href="#" class="category-card" data-category="باکسر ۱۵۰">باکسر ۱۵۰</a>
+                    <a href="#" class="category-card" data-category="کلاه و تجهیزات ایمنی">کلاه و تجهیزات ایمنی</a>
+                </div>
+            </div>
+
+            <!-- View 2: Product List (Hidden by default) -->
+            <div id="product-list-view" style="display: none;">
+                <button id="back-to-categories" class="back-button">&larr; بازگشت به دسته‌بندی‌ها</button>
+                <h2 id="product-list-title"></h2>
+                <div class="product-list">
+                    <!-- Products will be loaded here later -->
+                    <p>محصولات این دسته در اینجا نمایش داده خواهند شد.</p>
+                </div>
+            </div>
+
+        </section>
+        <!-- ======================= CHANGE ENDS HERE ======================= -->
+
         <section id="orders" class="content-section"><h1>سفارش‌ها</h1><p>لیست سفارش‌های شما در اینجا خواهد بود.</p></section>
         <section id="chat" class="content-section"><h1>چت و تماس</h1><p>اطلاعات تماس و چت با پشتیبانی.</p></section>
 
@@ -75,15 +107,15 @@
 
     <!-- The One, Complete App Script -->
     <script>
-        const appVersion = '1.8';
+        const appVersion = '1.9'; // Updated version
         const fakeDomain = '@myapp.com'; // Our secret domain
 
-        // ** PASTE YOUR FIREBASE CONFIG KEYS HERE **
+        // Your Firebase config keys (preserved from your file)
         const firebaseConfig = {
           apiKey: "AIzaSyDC_sR04GqMolGCZuBqmshwMn3aP_1qxM8",
           authDomain: "my-pwa-shop-8e911.firebaseapp.com",
           projectId: "my-pwa-shop-8e911",
-          storageBucket: "my-pwa-shop-8e911.firebasestorage.app",
+          storageBucket: "my-pwa-shop-8e911.appspot.com",
           messagingSenderId: "192952139085",
           appId: "1:192952139085:web:cd301112a862ab04d44b04"
         };
@@ -131,13 +163,19 @@
         const adminPanel = document.getElementById('admin-panel');
         const createUserForm = document.getElementById('create-user-form');
         
+        // NEW: Get references for the shop page
+        const categoryGridView = document.getElementById('category-grid-view');
+        const productListView = document.getElementById('product-list-view');
+        const productListTitle = document.getElementById('product-list-title');
+        const backToCategoriesButton = document.getElementById('back-to-categories');
+        const categoryCards = document.querySelectorAll('.category-card');
+        
         // --- Event Listeners ---
 
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const phoneNumber = loginForm.mobile.value;
             const password = loginForm.password.value;
-            // Convert phone number to an email for Firebase
             const email = phoneNumber.includes('@') ? phoneNumber : phoneNumber + fakeDomain;
             
             auth.signInWithEmailAndPassword(email, password)
@@ -156,6 +194,31 @@
             createUserForm.reset();
         });
 
+        // NEW: Add click listeners for each category card
+        categoryCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                const categoryName = card.dataset.category;
+                
+                // Update the title of the product page
+                productListTitle.textContent = categoryName;
+
+                // Switch views
+                categoryGridView.style.display = 'none';
+                productListView.style.display = 'block';
+
+                // In the future, we will fetch products for 'categoryName' here
+                console.log(`Loading products for: ${categoryName}`);
+            });
+        });
+
+        // NEW: Add click listener for the back button
+        backToCategoriesButton.addEventListener('click', () => {
+            // Switch views back
+            productListView.style.display = 'none';
+            categoryGridView.style.display = 'block';
+        });
+
         // --- Main App Logic ---
 
         auth.onAuthStateChanged(user => {
@@ -166,7 +229,6 @@
             if (user) {
                 loginView.style.display = 'none';
                 userView.style.display = 'block';
-                // Display the phone number by removing our fake domain
                 userEmailDisplay.textContent = `خوش آمدید، ${user.email.replace(fakeDomain, '')}`;
 
                 const userDocRef = db.collection('users').doc(user.uid);

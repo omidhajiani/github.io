@@ -115,3 +115,49 @@ body {
     z-index: 1000; /* Ensures it stays on top of other content */
     font-family: monospace;
 }
+
+/* NEW: Shop Page Styles */
+.category-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Space between cards */
+    justify-content: center;
+}
+
+.category-card {
+    width: 45%; /* Creates a two-column layout */
+    background-color: #ffffff;
+    padding: 20px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.back-button {
+    display: inline-block;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#product-list-title {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
