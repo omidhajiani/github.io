@@ -376,3 +376,19 @@ body {
     margin: 0;
     color: #007bff;
 }
+
+/* --- NEW: Logged-out Chat Placeholder Styles --- */
+.chat-login-prompt {
+    font-size: 0.9em;
+    color: #666;
+    background-color: #fff8e1;
+    border: 1px solid #ffecb3;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.chat-container.disabled {
+    background-color: #f9f9f9;
+    opacity: 0.7;
+}
