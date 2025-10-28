@@ -61,7 +61,6 @@
         <section id="chat" class="content-section">
             <h1>چت و تماس</h1>
 
-            <!-- NEW: View for logged-out users -->
             <div id="logged-out-chat-view">
                 <p class="chat-login-prompt">برای شروع چت، لطفا وارد حساب کاربری خود شوید.</p>
                 <div class="chat-container disabled">
@@ -75,7 +74,6 @@
                 </div>
             </div>
 
-            <!-- View for regular users (hidden by default) -->
             <div id="user-chat-view" style="display: none;">
                 <div class="chat-container">
                     <div class="chat-messages" id="user-chat-messages"></div>
@@ -86,13 +84,30 @@
                 </div>
             </div>
 
-            <!-- View for admins (hidden by default) -->
+            <!-- THIS WAS THE MISSING BLOCK -->
             <div id="admin-chat-view" style="display: none;">
-                <!-- Admin Chat Layout is unchanged -->
+                <div class="admin-chat-layout">
+                    <div class="chat-list-panel">
+                        <h3>لیست چت‌ها</h3>
+                        <div id="chat-list-container"></div>
+                    </div>
+                    <div class="chat-window-panel">
+                        <div class="chat-container">
+                            <h3 id="admin-chat-header">کاربری را انتخاب کنید</h3>
+                            <div class="chat-messages" id="admin-chat-messages"></div>
+                            <form class="chat-input-area" id="admin-chat-form" style="display: none;">
+                                <input type="text" placeholder="پاسخ خود را بنویسید..." required>
+                                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!-- END OF MISSING BLOCK -->
 
             <div class="contact-info">
-                <!-- Contact Info is unchanged -->
+                <p>برای تماس مستقیم، روی شماره زیر کلیک کنید:</p>
+                <a href="tel:+989123456789">۰۹۱۲-۳۴۵-۶۷۸۹</a>
             </div>
         </section>
 
@@ -138,7 +153,7 @@
 
     <!-- The One, Complete, and Corrected App Script -->
     <script>
-        const appVersion = '2.5';
+        const appVersion = '2.6';
         const fakeDomain = '@myapp.com';
 
         const firebaseConfig = {
