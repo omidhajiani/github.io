@@ -153,7 +153,7 @@
 
     <!-- The One, Complete, and Corrected App Script -->
     <script>
-        const appVersion = '2.7';
+        const appVersion = '2.8';
         const fakeDomain = '@myapp.com';
 
         const firebaseConfig = {
@@ -229,6 +229,7 @@
             productListTitle.textContent = categoryName;
             categoryGridView.style.display = 'none';
             productListView.style.display = 'block';
+            loadAndDisplayProducts(categoryName);
         }
 
         categoryCards.forEach(card => {
@@ -377,6 +378,40 @@
                 container.appendChild(messageEl);
             });
             container.scrollTop = container.scrollHeight;
+        }
+
+        // --- SECTION 7: PRODUCT DISPLAY LOGIC ---
+        async function loadAndDisplayProducts(categoryName) {
+            const productListDiv = productListView.querySelector('.product-list');
+            productListDiv.innerHTML = '<p>در حال بارگذاری محصولات...</p>';
+            
+            try {
+                const productsSnapshot = await db.collection('products')
+                    .where('category', '==', categoryName)
+                    .get();
+                
+                if (productsSnapshot.empty) {
+                    productListDiv.innerHTML = '<p>هیچ محصولی در این دسته‌بندی یافت نشد.</p>';
+                    return;
+                }
+                
+                productListDiv.innerHTML = '';
+                productsSnapshot.forEach(doc => {
+                    const product = doc.data();
+                    const productCard = document.createElement('div');
+                    productCard.classList.add('product-card');
+                    productCard.innerHTML = `
+                        <img src="${product.imageUrl}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p class="price">${product.price.toLocaleString('fa-IR')} تومان</p>
+                        <button class="add-to-cart-btn">افزودن به سبد خرید</button>
+                    `;
+                    productListDiv.appendChild(productCard);
+                });
+            } catch (error) {
+                console.error('Error loading products:', error);
+                productListDiv.innerHTML = '<p>خطا در بارگذاری محصولات. لطفا دوباره تلاش کنید.</p>';
+            }
         }
 
         function setupChatForUser(user) {
